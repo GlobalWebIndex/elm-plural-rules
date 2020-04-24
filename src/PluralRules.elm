@@ -236,15 +236,13 @@ Meanings](http://unicode.org/reports/tr35/tr35-numbers.html#Operands).
   - t = visible fractional digits in n, without trailing zeros
 
 Note that `v,w,f,t` are quite problematic because of `Float` behaviour, at least
-when not dealing with simple `!= 0`. As the package authors didn't need to deal
-with those problematic rules, we're currently keeping only what we can guarantee:
-notably `hasFractionDigits == v != 0`.
+when not dealing with simple `!= 0`. As we didn't need to deal with those
+problematic rules, we're currently keeping only what we can guarantee: notably
+`hasFractionDigits == v != 0`.
 
 If you, when implementing `toCardinal` for your language, need those `v,w,f,t`
 operands, shoot us a GitHub issue, we can likely create something working on
-`String`s which would likely work without bugs. Of course, then the question is
-how you get the input strings. Probably by takin raw strings from input
-elements?
+`String`s which be able to work with trailing zeros etc.
 
 -}
 type alias Operands =
