@@ -6,10 +6,10 @@ Based largely on [Unicode Language Plural
 Rules](https://unicode-org.github.io/cldr-staging/charts/37/supplemental/language_plural_rules.html).
 
 ![Screenshot of English
-rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/doc/en.png)
+rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/en.png)
 
 ![Screenshot of Czech
-rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/doc/cz.png)
+rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/cz.png)
 
 ----
 
