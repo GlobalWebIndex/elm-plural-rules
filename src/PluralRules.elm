@@ -252,7 +252,7 @@ type alias Operands =
     }
 
 
-{-| Compute operands from a `Float` number.
+{-| Compute `Operands` from a `Float` number.
 -}
 operands : Float -> Operands
 operands float =
