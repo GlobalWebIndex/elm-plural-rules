@@ -13,7 +13,7 @@ rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/cz.png
 
 (For the description of what the `v = 0` conditions in the above screenshots
 mean, look at the [Plural Operand Meanings](http://unicode.org/reports/tr35/tr35-numbers.html#Operands)
-table or check the `Plural Operands` section of the `PluralRules` module!
+table or check the `Plural Operands` section of the `PluralRules` module!)
 
 ----
 
