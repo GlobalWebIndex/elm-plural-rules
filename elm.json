@@ -1,0 +1,20 @@
+{
+    "type": "package",
+    "name": "GlobalWebIndex/elm-plural-rules",
+    "summary": "An abstraction for working with plural rules",
+    "license": "BSD-3-Clause",
+    "version": "1.0.0",
+    "exposed-modules": [
+        "PluralRules",
+        "PluralRules.En",
+        "PluralRules.Cz"
+    ],
+    "elm-version": "0.19.0 <= v < 0.20.0",
+    "dependencies": {
+        "elm/core": "1.0.5 <= v < 2.0.0",
+        "turboMaCk/any-dict": "2.3.0 <= v < 3.0.0"
+    },
+    "test-dependencies": {
+        "elm-explorations/test": "1.2.2 <= v < 2.0.0"
+    }
+}
