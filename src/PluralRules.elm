@@ -55,11 +55,14 @@ import Dict.Any exposing (AnyDict)
 {-| Rules are a dictionary with various plural forms of words in your given
 language.
 
-Elsewhere you can supply a function giving the default case (in English
+Elsewhere you can supply a function giving the default pluralization (in English
 that's adding a `-s` suffix), but here in `Rules` you'll have to supply the
 "exceptions" (like words that add an `-es` suffix instead).
 
 For an example see `fromList`.
+
+Note `Rules` don't do anything about case at all! If they contain `"query"` but
+you then try to `pluralize 5 "Query"`, the `query` rule _won't_ get used!
 
 -}
 type Rules

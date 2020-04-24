@@ -43,6 +43,14 @@ fromFloatInt =
             \int string ->
                 PluralRules.fromInt config PluralRules.empty int string
                     |> Expect.equal (PluralRules.fromFloat config PluralRules.empty (toFloat int) string)
+        , test "doesn't do anything about case" <|
+            \() ->
+                PluralRules.fromInt config rulesWithQuery 2 "Query"
+                    |> Expect.equal "Query"
+        , test "connects if the case is the same" <|
+            \() ->
+                PluralRules.fromInt config rulesWithQuery 2 "query"
+                    |> Expect.equal "queries"
         ]
 
 
