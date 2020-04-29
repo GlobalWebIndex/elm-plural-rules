@@ -7,8 +7,9 @@
     "exposed-modules": [
         "PluralRules",
         "PluralRules.En",
-        "PluralRules.Nl",
-        "PluralRules.Cz"
+        "PluralRules.Cz",
+        "PluralRules.Fr",
+        "PluralRules.Nl"
     ],
     "elm-version": "0.19.0 <= v < 0.20.0",
     "dependencies": {

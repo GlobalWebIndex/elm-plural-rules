@@ -1,10 +1,11 @@
-module PluralRulesTest exposing (cz, en, fromFloatInt, nl, operands)
+module PluralRulesTest exposing (cz, en, fr, nl, fromFloatInt, operands)
 
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, int, list, string)
 import PluralRules exposing (Cardinal(..), Operands, Rules)
 import PluralRules.Cz
 import PluralRules.En
+import PluralRules.Fr
 import PluralRules.Nl
 import Test exposing (..)
 
@@ -46,12 +47,44 @@ fromFloatInt =
                     |> Expect.equal (PluralRules.fromFloat config PluralRules.empty (toFloat int) string)
         , test "doesn't do anything about case" <|
             \() ->
-                PluralRules.fromInt config rulesWithQuery 2 "Query"
+                PluralRules.fromInt config rulesEn 2 "Query"
                     |> Expect.equal "Query"
         , test "connects if the case is the same" <|
             \() ->
-                PluralRules.fromInt config rulesWithQuery 2 "query"
+                PluralRules.fromInt config rulesEn 2 "query"
                     |> Expect.equal "queries"
+        ]
+
+
+rulesFr : Rules
+rulesFr =
+    PluralRules.add
+        "cheval"
+        [ ( One, "cheval" )
+        , ( Other, "chevaux" )
+        ]
+        PluralRules.empty
+
+
+fr : Test
+fr =
+    describe "PluralRules.Fr.pluralize"
+        [ test "cheval -> cheval if n == 1" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty 1 "cheval"
+                    |> Expect.equal "cheval"
+        , test "cheval -> cheval if n == -1" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty -1 "cheval"
+                    |> Expect.equal "cheval"
+        , test "cheval -> chevals if rules contain cheval" <|
+            \() ->
+                PluralRules.Fr.pluralize rulesFr 5 "cheval"
+                    |> Expect.equal "chevaux"
+        , test "cheval -> chevals if empty rules" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty 5 "cheval"
+                    |> Expect.equal "chevals"
         ]
 
 
@@ -63,8 +96,8 @@ rulesNl =
         , ( Other, "kinderen" )
         ]
         PluralRules.empty
-
-
+        
+        
 nl : Test
 nl =
     describe "PluralRules.Nl.pluralize"
@@ -87,8 +120,8 @@ nl =
         ]
 
 
-rulesWithQuery : Rules
-rulesWithQuery =
+rulesEn : Rules
+rulesEn =
     PluralRules.add
         "query"
         [ ( One, "query" )
@@ -110,7 +143,7 @@ en =
                     |> Expect.equal "query"
         , test "query -> queries if rules contain query" <|
             \() ->
-                PluralRules.En.pluralize rulesWithQuery 5 "query"
+                PluralRules.En.pluralize rulesEn 5 "query"
                     |> Expect.equal "queries"
         , test "query -> querys if empty rules" <|
             \() ->
@@ -119,8 +152,8 @@ en =
         ]
 
 
-rulesWithMuz : Rules
-rulesWithMuz =
+rulesCz : Rules
+rulesCz =
     PluralRules.add
         "muž"
         [ ( One, "muž" )
@@ -140,30 +173,30 @@ cz =
                     |> Expect.equal "muž"
         , test "0x muz -> muzu" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 0 "muž"
+                PluralRules.Cz.pluralize rulesCz 0 "muž"
                     |> Expect.equal "mužů"
         , test "1x muz -> muz" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 1 "muž"
+                PluralRules.Cz.pluralize rulesCz 1 "muž"
                     |> Expect.equal "muž"
         , test "2x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 2 "muž"
+                PluralRules.Cz.pluralize rulesCz 2 "muž"
                     |> Expect.equal "muži"
         , test "3x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 3 "muž"
+                PluralRules.Cz.pluralize rulesCz 3 "muž"
                     |> Expect.equal "muži"
         , test "4x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 4 "muž"
+                PluralRules.Cz.pluralize rulesCz 4 "muž"
                     |> Expect.equal "muži"
         , test "5x muz -> muzu" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 5 "muž"
+                PluralRules.Cz.pluralize rulesCz 5 "muž"
                     |> Expect.equal "mužů"
         , test "1.5x muz -> muze" <|
             \() ->
-                PluralRules.Cz.pluralizeFloat rulesWithMuz 1.5 "muž"
+                PluralRules.Cz.pluralizeFloat rulesCz 1.5 "muž"
                     |> Expect.equal "muže"
         ]
