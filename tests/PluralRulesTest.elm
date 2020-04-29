@@ -1,10 +1,11 @@
-module PluralRulesTest exposing (cz, en, fromFloatInt, operands)
+module PluralRulesTest exposing (cz, en, fr, fromFloatInt, operands)
 
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, int, list, string)
 import PluralRules exposing (Cardinal(..), Operands, Rules)
 import PluralRules.Cz
 import PluralRules.En
+import PluralRules.Fr
 import Test exposing (..)
 
 
@@ -51,6 +52,38 @@ fromFloatInt =
             \() ->
                 PluralRules.fromInt config rulesWithQuery 2 "query"
                     |> Expect.equal "queries"
+        ]
+
+
+rulesWithRequetes : Rules
+rulesWithRequetes =
+    PluralRules.add
+        "cheval"
+        [ ( One, "cheval" )
+        , ( Other, "chevaux" )
+        ]
+        PluralRules.empty
+
+
+fr : Test
+fr =
+    describe "PluralRules.Fr.pluralize"
+        [ test "cheval -> cheval if n == 1" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty 1 "cheval"
+                    |> Expect.equal "cheval"
+        , test "cheval -> cheval if n == -1" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty -1 "cheval"
+                    |> Expect.equal "cheval"
+        , test "cheval -> chevals if rules contain cheval" <|
+            \() ->
+                PluralRules.Fr.pluralize rulesWithRequetes 5 "cheval"
+                    |> Expect.equal "chevaux"
+        , test "cheval -> chevals if empty rules" <|
+            \() ->
+                PluralRules.Fr.pluralize PluralRules.empty 5 "cheval"
+                    |> Expect.equal "chevals"
         ]
 
 
