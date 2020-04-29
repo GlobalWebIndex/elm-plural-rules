@@ -143,7 +143,7 @@ en =
                     |> Expect.equal "query"
         , test "query -> queries if rules contain query" <|
             \() ->
-                PluralRules.En.pluralize rulesWithQuery 5 "query"
+                PluralRules.En.pluralize rulesEn 5 "query"
                     |> Expect.equal "queries"
         , test "query -> querys if empty rules" <|
             \() ->
@@ -173,30 +173,30 @@ cz =
                     |> Expect.equal "muž"
         , test "0x muz -> muzu" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 0 "muž"
+                PluralRules.Cz.pluralize rulesCz 0 "muž"
                     |> Expect.equal "mužů"
         , test "1x muz -> muz" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 1 "muž"
+                PluralRules.Cz.pluralize rulesCz 1 "muž"
                     |> Expect.equal "muž"
         , test "2x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 2 "muž"
+                PluralRules.Cz.pluralize rulesCz 2 "muž"
                     |> Expect.equal "muži"
         , test "3x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 3 "muž"
+                PluralRules.Cz.pluralize rulesCz 3 "muž"
                     |> Expect.equal "muži"
         , test "4x muz -> muzi" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 4 "muž"
+                PluralRules.Cz.pluralize rulesCz 4 "muž"
                     |> Expect.equal "muži"
         , test "5x muz -> muzu" <|
             \() ->
-                PluralRules.Cz.pluralize rulesWithMuz 5 "muž"
+                PluralRules.Cz.pluralize rulesCz 5 "muž"
                     |> Expect.equal "mužů"
         , test "1.5x muz -> muze" <|
             \() ->
-                PluralRules.Cz.pluralizeFloat rulesWithMuz 1.5 "muž"
+                PluralRules.Cz.pluralizeFloat rulesCz 1.5 "muž"
                     |> Expect.equal "muže"
         ]
