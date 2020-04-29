@@ -11,4 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: justgook/setup-elm@v1
+    - run: npm install -g elm-test
     - run: elm-test
