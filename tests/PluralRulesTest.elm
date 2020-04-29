@@ -55,8 +55,8 @@ fromFloatInt =
         ]
 
 
-rulesWithRequetes : Rules
-rulesWithRequetes =
+rulesFr : Rules
+rulesFr =
     PluralRules.add
         "cheval"
         [ ( One, "cheval" )
@@ -78,7 +78,7 @@ fr =
                     |> Expect.equal "cheval"
         , test "cheval -> chevals if rules contain cheval" <|
             \() ->
-                PluralRules.Fr.pluralize rulesWithRequetes 5 "cheval"
+                PluralRules.Fr.pluralize rulesFr 5 "cheval"
                     |> Expect.equal "chevaux"
         , test "cheval -> chevals if empty rules" <|
             \() ->

@@ -11,9 +11,6 @@ rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/en.png
 ![Screenshot of Czech
 rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/cz.png)
 
-![Screenshot of French
-rules](https://github.com/GlobalWebIndex/elm-plural-rules/raw/master/docs/fr.png)
-
 (For the description of what the `v = 0` conditions in the above screenshots
 mean, look at the [Plural Operand Meanings](http://unicode.org/reports/tr35/tr35-numbers.html#Operands)
 table or check the `Plural Operands` section of the `PluralRules` module!)
