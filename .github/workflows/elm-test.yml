@@ -1,0 +1,21 @@
+name: Elm tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 11.6.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 11.6.0
+      - name: Install dependencies
+        run: npm install -g elm elm-test
+      - name: Run tests
+        run: elm-test
