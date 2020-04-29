@@ -1,0 +1,13 @@
+name: Elm tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    steps:
+    - uses: justgook/setup-elm@v1
+    - run: elm-test
