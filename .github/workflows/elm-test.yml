@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     - uses: justgook/setup-elm@v1
     - run: elm-test
