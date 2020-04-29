@@ -1,13 +1,27 @@
 module PluralRules.Nl exposing (pluralize, pluralizeFloat)
 
+{-| Dutch is simple wrt. pluralization: it has just 1 vs "not 1".
+The main gimmick of this module is adding `"en"` to the word unless your provided
+`Rules` dictionary says it should behave differently.
+
+
+# Usage
+
+Create a `Rules` dictionary and a helper function that provides that dictionary
+to the `fromInt` function.
+
+Over the course of development, as you add more usages of the `pluralize`
+function, add those words into your `Rules` dictionary.
+
+You can look at the `examples/` folder for the intended usage.
+
+@docs pluralize, pluralizeFloat
+
+-}
+
 import PluralRules exposing (Cardinal(..), Rules)
 
 
-{-| Dutch is simple wrt. pluralization: it has just 1 vs "not 1".
-
-See En.Elm for a simple example, and Cz.Elm for a much more complete one.
-
--}
 toCardinal : Float -> Cardinal
 toCardinal float =
     if abs float == 1 then
@@ -22,6 +36,18 @@ defaultPluralize word =
     word ++ "en"
 
 
+{-| Pluralization function for French rules (adding `"en"` in the general case).
+
+Make your own helper function that gives `pluralize` your rules, so that you
+don't need to mention them every time!
+
+(See the `examples/` folder.)
+
+    myPluralize : Int -> String -> String
+    myPluralize n word =
+        PluralRules.Nl.pluralize rules n word
+
+-}
 pluralize : Rules -> Int -> String -> String
 pluralize rules n word =
     PluralRules.fromInt
@@ -33,6 +59,8 @@ pluralize rules n word =
         word
 
 
+{-| A `Float` variant of `pluralize`.
+-}
 pluralizeFloat : Rules -> Float -> String -> String
 pluralizeFloat rules n word =
     PluralRules.fromFloat
