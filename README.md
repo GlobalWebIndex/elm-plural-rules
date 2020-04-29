@@ -36,3 +36,9 @@ There are also helpers for writing pluralization logic for languages not
 included in this package. Obviously, there's a lot of languages and each of
 those has its own rules for how it pluralizes. Check them
 [here!](https://unicode-org.github.io/cldr-staging/charts/37/supplemental/language_plural_rules.html)
+
+## Currently supported Languages
+
+* English
+* Czech
+* Dutch

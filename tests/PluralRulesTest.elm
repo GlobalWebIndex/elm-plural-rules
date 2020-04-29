@@ -1,10 +1,11 @@
-module PluralRulesTest exposing (cz, en, fromFloatInt, operands)
+module PluralRulesTest exposing (cz, en, fromFloatInt, nl, operands)
 
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, int, list, string)
 import PluralRules exposing (Cardinal(..), Operands, Rules)
 import PluralRules.Cz
 import PluralRules.En
+import PluralRules.Nl
 import Test exposing (..)
 
 
@@ -51,6 +52,38 @@ fromFloatInt =
             \() ->
                 PluralRules.fromInt config rulesWithQuery 2 "query"
                     |> Expect.equal "queries"
+        ]
+
+
+rulesNl : Rules
+rulesNl =
+    PluralRules.add
+        "kind"
+        [ ( One, "kind" )
+        , ( Other, "kinderen" )
+        ]
+        PluralRules.empty
+
+
+nl : Test
+nl =
+    describe "PluralRules.Nl.pluralize"
+        [ test "kind -> kind if n == 1" <|
+            \() ->
+                PluralRules.Nl.pluralize PluralRules.empty 1 "kind"
+                    |> Expect.equal "kind"
+        , test "kind -> kind if n == -1" <|
+            \() ->
+                PluralRules.Nl.pluralize PluralRules.empty -1 "kind"
+                    |> Expect.equal "kind"
+        , test "kind -> kinderen if rules contain kind" <|
+            \() ->
+                PluralRules.Nl.pluralize rulesNl 5 "kind"
+                    |> Expect.equal "kinderen"
+        , test "kind -> kinden if empty rules" <|
+            \() ->
+                PluralRules.Nl.pluralize PluralRules.empty 5 "kind"
+                    |> Expect.equal "kinden"
         ]
 
 
