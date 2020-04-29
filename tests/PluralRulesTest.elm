@@ -55,8 +55,8 @@ fromFloatInt =
         ]
 
 
-rulesWithKind : Rules
-rulesWithKind =
+rulesNl : Rules
+rulesNl =
     PluralRules.add
         "kind"
         [ ( One, "kind" )
@@ -78,7 +78,7 @@ nl =
                     |> Expect.equal "kind"
         , test "kind -> kinderen if rules contain kind" <|
             \() ->
-                PluralRules.Nl.pluralize rulesWithKind 5 "kind"
+                PluralRules.Nl.pluralize rulesNl 5 "kind"
                     |> Expect.equal "kinderen"
         , test "kind -> kinden if empty rules" <|
             \() ->
