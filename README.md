@@ -41,4 +41,5 @@ those has its own rules for how it pluralizes. Check them
 
 * English
 * Czech
+* French
 * Dutch
