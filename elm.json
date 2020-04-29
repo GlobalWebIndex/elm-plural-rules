@@ -3,7 +3,7 @@
     "name": "GlobalWebIndex/elm-plural-rules",
     "summary": "An abstraction for working with plural rules",
     "license": "BSD-3-Clause",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "exposed-modules": [
         "PluralRules",
         "PluralRules.En",
