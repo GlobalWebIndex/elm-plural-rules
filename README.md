@@ -43,3 +43,19 @@ those has its own rules for how it pluralizes. Check them
 * Czech
 * French
 * Dutch
+
+## FAQ
+
+### Where does the rules come from?
+
+You're supposed to make your own dictionary of Rules and add words into it as you start using them in the app.
+
+Each language has its own ways of pluralizing words and we've opted out to let you "grow your own dictionary" based on the words you're using in your app, because:
+
+  - it would be impractical for the package to contain a whole dictionary in that given language,
+  - and I believe it would be impossible / very impractical to try to implement that behaviour with some kind of function. This is not a NLP package :)
+ 
+See [examples/Pluralize.elm](https://github.com/GlobalWebIndex/elm-plural-rules/blob/master/examples/Pluralize.elm) for how rules for specific words can be created.
+
+
+
