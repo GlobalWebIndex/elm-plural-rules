@@ -36,7 +36,7 @@ defaultPluralize word =
     word ++ "en"
 
 
-{-| Pluralization function for French rules (adding `"en"` in the general case).
+{-| Pluralization function for Dutch rules (adding `"en"` in the general case).
 
 Make your own helper function that gives `pluralize` your rules, so that you
 don't need to mention them every time!
